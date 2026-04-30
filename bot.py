@@ -1,26 +1,24 @@
-from telegram import Update
-from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filters
+from telethon import TelegramClient, events
 
-# 🔑 Bot token (BotFather dan olasan)
-TOKEN = ""
+# 🔐 Sening ma'lumotlaring
+api_id = 20453287
+api_hash = "9bce9c6acef9fe618f80e4c383cf35e5"
+
+# 📁 session fayl (1 marta login qiladi)
+client = TelegramClient("session", api_id, api_hash)
 
 # 💬 Javob matni
-REPLY_TEXT = "Assalomu alaykum 👋 bu Shohjahonning avto javob bot 😉"
+REPLY_TEXT = "Assalomu alaykum 👋 bu Shohjahonning avto javob boti 😉"
 
-# 📩 Har qanday text kelganda ishlaydi
-async def auto_reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if update.message and update.message.text:
-        await update.message.reply_text(REPLY_TEXT)
+@client.on(events.NewMessage)
+async def handler(event):
+    # o'zing yozgan xabarlarga ham javob bermasligi uchun:
+    if event.out:
+        return
 
-def main():
-    app = ApplicationBuilder().token(TOKEN).build()
+    if event.message and event.raw_text:
+        await event.reply(REPLY_TEXT)
 
-    # Hamma text xabarlarga javob
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, auto_reply))
 
-    print("🤖 Bot ishga tushdi...")
-
-    app.run_polling()
-
-if __name__ == "__main__":
-    main()
+client.start()
+client.run_until_disconnected()
