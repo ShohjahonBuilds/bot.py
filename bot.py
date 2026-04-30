@@ -2,7 +2,7 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filters
 
 # 🔑 Bot token (BotFather dan olasan)
-TOKEN = "20453287"
+TOKEN = ""
 
 # 💬 Javob matni
 REPLY_TEXT = "Assalomu alaykum 👋 bu Shohjahonning avto javob bot 😉"
