@@ -8,7 +8,7 @@ api_hash = "9bce9c6acef9fe618f80e4c383cf35e5"
 client = TelegramClient("session", api_id, api_hash)
 
 # 💬 Javob matni
-REPLY_TEXT = "Assalomu alaykum 👋 bu Shohjahonning avto javob boti 😉"
+REPLY_TEXT = "Assalomu alaykum 👋 bu Shohjahonning avto javob boti 😉 Men hozir bandman keyinroq yozing!😊"
 
 @client.on(events.NewMessage)
 async def handler(event):
